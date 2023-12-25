@@ -46,6 +46,15 @@ public class EmployeeController {
         return Result.success(pageResult);
     }
 
+
+    /**
+     * 启用禁用
+     * http://localhost:8080/admin/employee/enable/0?id=10
+     *
+     * @param status
+     * @param id
+     * @return {@link Result}
+     */
     @PostMapping("/enable/{status}")
     @ApiOperation("启用禁用员工账号")
     public Result enable(@PathVariable("status") Integer status, Long id) {
