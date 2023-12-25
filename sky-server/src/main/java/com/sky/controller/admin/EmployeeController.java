@@ -46,6 +46,18 @@ public class EmployeeController {
         return Result.success(pageResult);
     }
 
+    @GetMapping("{id}")
+    public Result<Employee> getById(@PathVariable Long id) {
+        log.info("根据id查询员工，id为：{}", id);
+        return Result.success(employeeService.getById(id));
+    }
+
+    @PutMapping
+    public Result update(@RequestBody EmployeeDTO dto){
+        employeeService.update(dto);
+        return Result.success();
+    }
+
 
     /**
      * 启用禁用

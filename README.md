@@ -22,3 +22,29 @@
 - 可以对状态为“禁用”的账号进行“启用”操作
 - 状态为“禁用”的账号，不允许登录系统
 
+
+### 编辑员工
+
+业务规则：
+- 点击编辑按钮，弹出编辑员工的模态框
+- 修改员工信息后，点击保存按钮，关闭模态框，刷新列表
+
+涉及接口
+- 根据员工id查询信息（get /admin/employee/{id}）
+- 修改员工信息(put /admin/employee)
+
+
+## 分类
+
+### 业务规则
+-  分类名称需唯一
+- 分类按照类型可分为菜品分类和套餐分类
+- 新增分类默认状态为“禁用”
+
+### 接口设计
+- 新增分类(post /admin/category)
+- 分页查询分类(get /admin/category/page?pageNum=1&pageSize=10)
+- 启用禁用分类(put /admin/category/status/{status})
+- 编辑分类(put /admin/category)
+- 删除分类(delete /admin/category/{id})
+- 根据类型查询分类(get /admin/category/list?type=1)
