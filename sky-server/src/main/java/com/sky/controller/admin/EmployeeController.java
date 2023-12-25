@@ -11,6 +11,7 @@ import com.sky.result.Result;
 import com.sky.service.EmployeeService;
 import com.sky.utils.JwtUtil;
 import com.sky.vo.EmployeeLoginVO;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,17 +33,25 @@ public class EmployeeController {
     private JwtProperties jwtProperties;
 
     @PostMapping("/save")
-    public Result addUser(@RequestBody EmployeeDTO dto){
-        log.info("新增员工：{}",dto);
+    public Result addUser(@RequestBody EmployeeDTO dto) {
+        log.info("新增员工：{}", dto);
         employeeService.save(dto);
         return Result.success();
     }
 
     @GetMapping("pageList")
-    public Result<PageResult> pageList(EmployeePageQueryDTO employeePageQueryDTO){
+    public Result<PageResult> pageList(EmployeePageQueryDTO employeePageQueryDTO) {
         log.info("员工分页查询，参数为：{}", employeePageQueryDTO);
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
+    }
+
+    @PostMapping("/enable/{status}")
+    @ApiOperation("启用禁用员工账号")
+    public Result enable(@PathVariable("status") Integer status, Long id) {
+        employeeService.enable(status, id);
+        return Result.success();
+
     }
 
     /**

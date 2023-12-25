@@ -18,4 +18,6 @@ public interface EmployeeService {
     String save(EmployeeDTO dto);
 
     PageResult pageQuery(EmployeePageQueryDTO dto);
+
+    void enable(Integer status, Long id);
 }

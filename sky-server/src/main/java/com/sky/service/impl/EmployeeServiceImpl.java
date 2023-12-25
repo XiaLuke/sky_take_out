@@ -107,6 +107,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * startPage 与 pageQuery如何实现关联
+     * startPage再内部将page和pageSize封装为Page对象
+     * 再将Page对象放入ThreadLocal中
+     *
+     * 当调用pageQuery方法时，会从ThreadLocal中获取Page对象，获取其中的page和pageSize
+     * 将条件封装为limit语句，拼接再sql语句后面
      *
      * @param dto
      * @return {@link PageResult}
@@ -119,5 +124,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         Page<Employee> pageInfo = employeeMapper.pageQuery(dto);
 
         return new PageResult(pageInfo.getTotal(), pageInfo.getResult());
+    }
+
+    @Override
+    public void enable(Integer status, Long id) {
+
     }
 }
