@@ -28,6 +28,7 @@ public interface EmployeeMapper {
 
     Page<Employee> pageQuery(EmployeePageQueryDTO dto);
 
+    @AutoFill(value = OperationType.UPDATE)
     void update(Employee build);
 
     @Select("select * from employee where id = #{id}")

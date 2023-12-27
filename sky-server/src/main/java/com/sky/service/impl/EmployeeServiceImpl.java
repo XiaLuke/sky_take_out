@@ -86,8 +86,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         //employee.setUpdateTime(LocalDateTime.now());
 
         //获取拦截器中设置当前记录创建人id和修改人id
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+        // 通过切面赋值
+//        employee.setCreateUser(BaseContext.getCurrentId());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
         
 //        try {
             employeeMapper.insert(employee);
@@ -153,8 +154,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void update(EmployeeDTO dto) {
         Employee employee = new Employee();
         BeanUtils.copyProperties(dto,employee);
-        employee.setUpdateUser(BaseContext.getCurrentId());
-        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
+//        employee.setUpdateTime(LocalDateTime.now());
         employeeMapper.update(employee);
     }
 }
